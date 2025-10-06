@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Aurora Bean Coffee</title>
+  <meta name="description" content="Learn the story of Aurora Bean Coffee—our passion for ethical sourcing, community, and elevated coffee experiences." />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --primary: #3C2A21; --secondary: #85583A; --accent: #E0A36D; --glass-bg: rgba(60,42,33,.7); --glass-border: rgba(133,88,58,.25);
+    }
+    .glass-nav, .glass-card, .glass-button { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background: var(--glass-bg); border: 1px solid var(--glass-border); }
+    .glass-card { border-radius: 16px; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-yellow-50 via-amber-100 to-amber-200 text-gray-900" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;">
+  <!-- Loading Screen -->
+  <div id="loading-screen" aria-label="Loading" style="display:none;"></div>
+  <canvas id="particles-canvas"></canvas>
+  <nav class="glass-nav fixed w-full z-40 top-0 left-0 right-0 shadow-lg" aria-label="Main navigation">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="index.html" class="text-xl md:text-2xl font-bold">Aurora Bean</a>
+      <div class="hidden md:flex items-center space-x-6"><a href="index.html#home">Home</a><a href="index.html#menu">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    </div>
+  </nav>
+
+  <header class="min-h-screen flex items-center" style="background-image:url('https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1400&auto=format&fit=crop'); background-size:cover; background-position:center;">
+    <div class="absolute inset-0" style="background: rgba(12,12,12,.35);"></div>
+    <section class="container relative z-10 text-center text-white py-40 px-4">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4" data-animate="gradient" style="background: linear-gradient(90deg, #fff, #f8e4a3); -webkit-background-clip: text; color: transparent;">Our Story</h1>
+      <p class="text-lg md:text-2xl" data-animate="words">From seed to cup, we champion ethical sourcing, community, and refined coffee experiences.</p>
+    </section>
+  </header>
+
+  <section class="container py-16 grid grid-cols-1 md:grid-cols-3 gap-8" aria-label="Our values">
+    <article class="glass-card p-6 text-center">
+      <div class="text-3xl mb-2">🌱</div>
+      <h3 class="font-semibold mb-2">Ethical Sourcing</h3>
+      <p class="text-sm text-gray-600">We partner with farmers who invest in people and planet.</p>
+    </article>
+    <article class="glass-card p-6 text-center">
+      <div class="text-3xl mb-2">🤝</div>
+      <h3 class="font-semibold mb-2">Community First</h3>
+      <p class="text-sm text-gray-600">A space for neighbors to gather, work, and create.</p>
+    </article>
+    <article class="glass-card p-6 text-center">
+      <div class="text-3xl mb-2">☕</div>
+      <h3 class="font-semibold mb-2">Craft Coffee</h3>
+      <p class="text-sm text-gray-600">Small-batch roasts with attention to flavor and balance.</p>
+    </article>
+  </section>
+
+  <section class="container py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-start" aria-label="Meet the team">
+    <div class="glass-card p-6">
+      <h3 class="text-xl font-semibold mb-2">Our Roastery</h3>
+      <p class="text-sm">A cozy space where beans meet baristas, and we roast to highlight origin notes.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="glass-card p-4 text-center">
+        <div class="text-2xl">Alex Kim</div>
+        <div class="text-xs text-gray-500">Head Roaster</div>
+      </div>
+      <div class="glass-card p-4 text-center">
+        <div class="text-2xl">Priya Singh</div>
+        <div class="text-xs text-gray-500">Barista Lead</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="container py-8 text-center text-sm text-gray-400"><span>© 2025 Aurora Bean Coffee. All rights reserved.</span></footer>
+
+  <script>
+    // Reuse the master init hooks for consistency
+    function initGlassmorphism(){ }
+    function initParticles(){ const canvas=document.getElementById('particles-canvas'); if(!canvas) return; const ctx=canvas.getContext('2d'); let w=canvas.width=window.innerWidth, h=canvas.height=window.innerHeight; const ps=[]; class P{ constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=Math.random()*0.6-0.3; this.vy=Math.random()*0.6-0.3; this.s=Math.random()*2+1; this.a=Math.random()*0.6+0.2 } upd(){ this.x+=this.vx; this.y+=this.vy; if(this.x>w) this.x=0; if(this.x<0) this.x=w; if(this.y>h) this.y=0; if(this.y<0) this.y=h; } dr(){ ctx.fillStyle='rgba(255,255,255,'+this.a+')'; ctx.beginPath(); ctx.arc(this.x,this.y,this.s,0,Math.PI*2); ctx.fill(); }}
+      for(let i=0;i<80;i++) ps.push(new P());
+      function loop(){ ctx.clearRect(0,0,w,h); ps.forEach(p=>{ p.upd(); p.dr(); }); for(let i=0;i<ps.length;i++){ for(let j=i+1;j<ps.length;j++){ const dx=ps[i].x-ps[j].x, dy=ps[i].y-ps[j].y; const d=Math.sqrt(dx*dx+dy*dy); if(d<120){ ctx.strokeStyle='rgba(255,255,255,'+ (0.12*(1-d/120)) +')'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(ps[i].x,ps[i].y); ctx.lineTo(ps[j].x,ps[j].y); ctx.stroke(); } } } requestAnimationFrame(loop); }
+      window.addEventListener('resize', ()=>{ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; }); loop(); }
+    function initCustomCursor(){ const dot=document.createElement('div'); dot.className='cursor-dot'; document.body.appendChild(dot); const outline=document.createElement('div'); outline.className='cursor-outline'; document.body.appendChild(outline); let mx=0,my=0,ox=0,oy=0; document.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; }); (function loop(){ ox += (mx-ox)*0.15; oy += (my-oy)*0.15; outline.style.left=ox+'px'; outline.style.top=oy+'px'; requestAnimationFrame(loop); })(); document.querySelectorAll('a, button, .magnetic').forEach(el=>{ el.addEventListener('mouseenter', ()=> outline.classList.add('expand')); el.addEventListener('mouseleave', ()=> outline.classList.remove('expand')); }); }
+    function initDarkMode(){ const t=document.createElement('button'); t.id='dark-mode-toggle'; t.className='glass-button fixed bottom-6 right-6 w-12 h-12'; t.style.display='flex'; t.style.alignItems='center'; t.style.justifyContent='center'; t.style.border='none'; t.style.background='rgba(0,0,0,.3)'; t.innerHTML='🌙'; document.body.appendChild(t); t.addEventListener('click', ()=>{ document.body.classList.toggle('dark'); t.innerHTML = document.body.classList.contains('dark') ? '☀️':'🌙'; localStorage.setItem('coffee-dark-mode', document.body.classList.contains('dark')? 'dark':'light'); }); const saved = localStorage.getItem('coffee-dark-mode'); if(saved==='dark'){ document.body.classList.add('dark'); t.innerHTML='☀️'; } }
+    function initLoadingScreen(){ const loader=document.getElementById('loading-screen'); if(!loader) return; loader.style.display='flex'; const text=document.getElementById('loading-text'); let d=0; const it=setInterval(()=>{ text.textContent = 'Loading' + '.'.repeat(d%4); d++; }, 300); window.addEventListener('load', ()=>{ clearInterval(it); loader.style.opacity='0'; setTimeout(()=>loader.remove(), 500); }); }
+    function initScrollAnimations(){ const obs = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; obs.unobserve(e.target); } }); }, { threshold:.1 }); document.querySelectorAll('[data-scroll-animate]').forEach(el=>{ el.style.opacity='0'; el.style.transform='translateY(20px)'; obs.observe(el); }); }
+    function initAll(){ initGlassmorphism(); initParticles(); initCustomCursor(); initDarkMode(); initLoadingScreen(); initScrollAnimations(); }
+    if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', initAll); } else { initAll(); }
+  </script>
+</body>
+</html>
